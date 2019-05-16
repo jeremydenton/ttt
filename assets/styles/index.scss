@@ -1,1 +1,29 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'colors';
+@import 'theme';
+
+body {
+  background-color: $background-color;
+}
+
+// .container {
+//   width: 800px;
+//   background-color: yellow;
+//   height: 800px;
+// }
+
+div {
+  background-color: $board-color;
+  border: 10px;
+  border-color: $background-color;
+  border-style: solid;
+  height: 250px;
+  width: 250px;
+}
+
+.row {
+  background-color: $background-color;
+  float: left;
+  height: 250px;
+  width: 800px;
+}
