@@ -1,12 +1,21 @@
 const store = require('../store')
 
-const currentPlayer = 'x'
+const changePlayer = () => {
+  if (currentPlayer === 'x') {
+    currentPlayer = 'o'
+  } else {
+    currentPlayer = 'x'
+  }
+}
+
+let currentPlayer = 'x'
 
 const onNewGameSuccess = responseData => {
   console.log('success', responseData)
   $('#turn').text('New Game: X turn')
   store.game = responseData.game
   console.log('store is', store)
+  $('.square').html('')
 }
 const onNewGameFailure = () => {
   $('#turn').text('New Game Failed')
@@ -15,6 +24,8 @@ const onNewGameFailure = () => {
 const onZeroSuccess = game => {
   console.log('success', game)
   $('#0').text(currentPlayer)
+  $('#0').off('click')
+  changePlayer()
 }
 
 const onZeroFailure = () => {
@@ -23,6 +34,8 @@ const onZeroFailure = () => {
 const onOneSuccess = game => {
   console.log('success', game)
   $('#1').text(currentPlayer)
+  $('#1').off('click')
+  changePlayer()
 }
 
 const onOneFailure = () => {
@@ -31,6 +44,8 @@ const onOneFailure = () => {
 const onTwoSuccess = game => {
   console.log('success', game)
   $('#2').text(currentPlayer)
+  $('#2').off('click')
+  changePlayer()
 }
 
 const onTwoFailure = () => {
@@ -39,6 +54,8 @@ const onTwoFailure = () => {
 const onThreeSuccess = game => {
   console.log('success', game)
   $('#3').text(currentPlayer)
+  $('#3').off('click')
+  changePlayer()
 }
 
 const onThreeFailure = () => {
@@ -47,6 +64,8 @@ const onThreeFailure = () => {
 const onFourSuccess = game => {
   console.log('success', game)
   $('#4').text(currentPlayer)
+  $('#4').off('click')
+  changePlayer()
 }
 
 const onFourFailure = () => {
@@ -55,6 +74,8 @@ const onFourFailure = () => {
 const onFiveSuccess = game => {
   console.log('success', game)
   $('#5').text(currentPlayer)
+  $('#5').off('click')
+  changePlayer()
 }
 
 const onFiveFailure = () => {
@@ -63,6 +84,8 @@ const onFiveFailure = () => {
 const onSixSuccess = game => {
   console.log('success', game)
   $('#6').text(currentPlayer)
+  $('#6').off('click')
+  changePlayer()
 }
 
 const onSixFailure = () => {
@@ -71,6 +94,8 @@ const onSixFailure = () => {
 const onSevenSuccess = game => {
   console.log('success', game)
   $('#7').text(currentPlayer)
+  $('#7').off('click')
+  changePlayer()
 }
 
 const onSevenFailure = () => {
@@ -79,6 +104,8 @@ const onSevenFailure = () => {
 const onEightSuccess = game => {
   console.log('success', game)
   $('#8').text(currentPlayer)
+  $('#8').off('click')
+  changePlayer()
 }
 
 const onEightFailure = () => {
@@ -105,5 +132,7 @@ module.exports = {
   onSevenSuccess,
   onSevenFailure,
   onEightSuccess,
-  onEightFailure
+  onEightFailure,
+  currentPlayer,
+  changePlayer
 }

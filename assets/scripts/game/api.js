@@ -15,6 +15,19 @@ const store = require('../store')
 //   })
 // }
 
+const currentPlayer = 'x'
+
+// const changePlayer = () => {
+//   if (currentPlayer === 'x') {
+//     currentPlayer = 'o'
+//     console.log('if' + currentPlayer)
+//   } else {
+//     currentPlayer = 'x'
+//     console.log('else' + currentPlayer)
+//   }
+//   console.log(currentPlayer)
+// }
+
 const newGame = () => {
   console.log('from api newGame')
   return $.ajax({
@@ -36,7 +49,7 @@ const updateGame = (square) => {
       'game': {
         'cell': {
           'index': square,
-          'value': 'x'
+          'value': currentPlayer
         },
         'over': false
       }
@@ -49,4 +62,5 @@ const updateGame = (square) => {
 module.exports = {
   newGame,
   updateGame
+  // changePlayer
 }
