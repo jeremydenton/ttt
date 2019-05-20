@@ -6,13 +6,35 @@ body {
   background-color: $background-color;
 }
 
+#message {
+  color: $board-color;
+}
+
 // .container {
 //   width: 800px;
 //   background-color: yellow;
 //   height: 800px;
 // }
 
-div {
+.signedIn {
+  display: none;
+}
+
+.signedOut {
+
+}
+
+
+
+
+.row {
+  background-color: $background-color;
+  float: left;
+  height: 250px;
+  width: 800px;
+}
+
+.square {
   background-color: $board-color;
   border: 10px;
   border-color: $background-color;
@@ -21,9 +43,6 @@ div {
   width: 250px;
 }
 
-.row {
-  background-color: $background-color;
-  float: left;
-  height: 250px;
-  width: 800px;
+#turn {
+  color: $board-color;
 }
