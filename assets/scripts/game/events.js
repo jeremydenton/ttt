@@ -1,39 +1,44 @@
 'use strict'
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('../store.js')
 
-// const gameOver = array => {
-//   if (((array[0] === 'x') && (array[1] === 'x') && (array[2] === 'x')) ||
-//     ((array[3] === 'x') && (array[4] === 'x') && (array[5] === 'x')) ||
-//     ((array[6] === 'x') && (array[7] === 'x') && (array[8] === 'x')) ||
-//     ((array[0] === 'x') && (array[3] === 'x') && (array[6] === 'x')) ||
-//     ((array[1] === 'x') && (array[4] === 'x') && (array[7] === 'x')) ||
-//     ((array[2] === 'x') && (array[5] === 'x') && (array[8] === 'x')) ||
-//     ((array[0] === 'x') && (array[4] === 'x') && (array[8] === 'x')) ||
-//     ((array[2] === 'x') && (array[4] === 'x') && (array[6] === 'x'))) {
-//     console.log('x wins')
-//   } else if (((array[0] === 'o') && (array[1] === 'o') && (array[2] === 'o')) ||
-//     ((array[3] === 'o') && (array[4] === 'o') && (array[5] === 'o')) ||
-//     ((array[6] === 'o') && (array[7] === 'o') && (array[8] === 'o')) ||
-//     ((array[0] === 'o') && (array[3] === 'o') && (array[6] === 'o')) ||
-//     ((array[1] === 'o') && (array[4] === 'o') && (array[7] === 'o')) ||
-//     ((array[2] === 'o') && (array[5] === 'o') && (array[8] === 'o')) ||
-//     ((array[0] === 'o') && (array[4] === 'o') && (array[8] === 'o')) ||
-//     ((array[2] === 'o') && (array[4] === 'o') && (array[6] === 'o'))) {
-//     console.log('o wins')
-//   } else if (array.length === 9) {
-//     console.log('draw')
-//   } else {
-//     return game.over === false
-//   }
-// }
+const gameOver = board => {
+  const array = store.game.cells
+  console.log(array)
+  if (((array[0] === 'x') && (array[1] === 'x') && (array[2] === 'x')) ||
+    ((array[3] === 'x') && (array[4] === 'x') && (array[5] === 'x')) ||
+    ((array[6] === 'x') && (array[7] === 'x') && (array[8] === 'x')) ||
+    ((array[0] === 'x') && (array[3] === 'x') && (array[6] === 'x')) ||
+    ((array[1] === 'x') && (array[4] === 'x') && (array[7] === 'x')) ||
+    ((array[2] === 'x') && (array[5] === 'x') && (array[8] === 'x')) ||
+    ((array[0] === 'x') && (array[4] === 'x') && (array[8] === 'x')) ||
+    ((array[2] === 'x') && (array[4] === 'x') && (array[6] === 'x'))) {
+    $('#turn').text('X wins!')
+    $('.square').off('click')
+  } else if (((array[0] === 'o') && (array[1] === 'o') && (array[2] === 'o')) ||
+    ((array[3] === 'o') && (array[4] === 'o') && (array[5] === 'o')) ||
+    ((array[6] === 'o') && (array[7] === 'o') && (array[8] === 'o')) ||
+    ((array[0] === 'o') && (array[3] === 'o') && (array[6] === 'o')) ||
+    ((array[1] === 'o') && (array[4] === 'o') && (array[7] === 'o')) ||
+    ((array[2] === 'o') && (array[5] === 'o') && (array[8] === 'o')) ||
+    ((array[0] === 'o') && (array[4] === 'o') && (array[8] === 'o')) ||
+    ((array[2] === 'o') && (array[4] === 'o') && (array[6] === 'o'))) {
+    $('#turn').text('O wins!')
+    $('.square').off('click')
+  } else if (array.find(!'')) {
+    $('#turn').text('Tie')
+    $('.square').off('click')
+  }
+}
 
 const onZero = event => {
   event.preventDefault()
-  console.log('click0')
+  console.log(event.target.id)
   api.updateGame(0)
     .then(ui.onZeroSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onZeroFailure)
 }
 
@@ -43,6 +48,7 @@ const onOne = event => {
   api.updateGame(1)
     .then(ui.onOneSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onOneFailure)
 }
 const onTwo = event => {
@@ -51,6 +57,7 @@ const onTwo = event => {
   api.updateGame(2)
     .then(ui.onTwoSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onTwoFailure)
 }
 const onThree = event => {
@@ -59,6 +66,7 @@ const onThree = event => {
   api.updateGame(3)
     .then(ui.onThreeSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onThreeFailure)
 }
 const onFour = event => {
@@ -67,6 +75,7 @@ const onFour = event => {
   api.updateGame(4)
     .then(ui.onFourSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onFourFailure)
 }
 const onFive = event => {
@@ -75,6 +84,7 @@ const onFive = event => {
   api.updateGame(5)
     .then(ui.onFiveSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onFiveFailure)
 }
 const onSix = event => {
@@ -83,6 +93,7 @@ const onSix = event => {
   api.updateGame(6)
     .then(ui.onSixSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onSixFailure)
 }
 const onSeven = event => {
@@ -91,6 +102,7 @@ const onSeven = event => {
   api.updateGame(7)
     .then(ui.onSevenSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onSevenFailure)
 }
 const onEight = event => {
@@ -99,35 +111,31 @@ const onEight = event => {
   api.updateGame(8)
     .then(ui.onEightSuccess)
     .then(api.changePlayer)
+    .then(gameOver)
     .catch(ui.onEightFailure)
+}
+const addHandlers = () => {
+  $('#0').on('click', onZero)
+  $('#1').on('click', onOne)
+  $('#2').on('click', onTwo)
+  $('#3').on('click', onThree)
+  $('#4').on('click', onFour)
+  $('#5').on('click', onFive)
+  $('#6').on('click', onSix)
+  $('#7').on('click', onSeven)
+  $('#8').on('click', onEight)
 }
 const onNewGame = event => {
   event.preventDefault()
   console.log('new game')
   api.newGame()
     .then(ui.onNewGameSuccess)
-    .then($('#0').on('click', onZero))
-    .then($('#1').on('click', onOne))
-    .then($('#2').on('click', onTwo))
-    .then($('#3').on('click', onThree))
-    .then($('#4').on('click', onFour))
-    .then($('#5').on('click', onFive))
-    .then($('#6').on('click', onSix))
-    .then($('#7').on('click', onSeven))
-    .then($('#8').on('click', onEight))
+    .then(addHandlers)
+    .then(store.currentPlayer = 'x')
     .then(api.currentPlayer = 'x')
     .catch(ui.onNewGameFailure)
 }
-
 module.exports = {
-  onZero,
-  onOne,
-  onTwo,
-  onThree,
-  onFour,
-  onFive,
-  onSix,
-  onSeven,
-  onEight,
-  onNewGame
+  onNewGame,
+  addHandlers
 }

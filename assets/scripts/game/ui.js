@@ -1,31 +1,35 @@
 const store = require('../store')
 
+let currentPlayer = 'x'
+
 const changePlayer = () => {
   if (currentPlayer === 'x') {
     currentPlayer = 'o'
+    $('#turn').text('O\'s turn')
   } else {
     currentPlayer = 'x'
+    $('#turn').text('X\'s turn')
   }
 }
 
-let currentPlayer = 'x'
-
 const onNewGameSuccess = responseData => {
   console.log('success', responseData)
-  $('#turn').text('New Game: X turn')
+  $('#turn').text('New Game: X\'s turn')
   store.game = responseData.game
   console.log('store is', store)
   $('.square').html('')
+  currentPlayer = 'x'
 }
 const onNewGameFailure = () => {
   $('#turn').text('New Game Failed')
 }
 
 const onZeroSuccess = game => {
-  console.log('success', game)
   $('#0').text(currentPlayer)
   $('#0').off('click')
   changePlayer()
+  console.log(game)
+  store.game = game.game
 }
 
 const onZeroFailure = () => {
@@ -36,6 +40,7 @@ const onOneSuccess = game => {
   $('#1').text(currentPlayer)
   $('#1').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onOneFailure = () => {
@@ -46,6 +51,7 @@ const onTwoSuccess = game => {
   $('#2').text(currentPlayer)
   $('#2').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onTwoFailure = () => {
@@ -56,6 +62,7 @@ const onThreeSuccess = game => {
   $('#3').text(currentPlayer)
   $('#3').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onThreeFailure = () => {
@@ -66,6 +73,7 @@ const onFourSuccess = game => {
   $('#4').text(currentPlayer)
   $('#4').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onFourFailure = () => {
@@ -76,6 +84,7 @@ const onFiveSuccess = game => {
   $('#5').text(currentPlayer)
   $('#5').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onFiveFailure = () => {
@@ -86,6 +95,7 @@ const onSixSuccess = game => {
   $('#6').text(currentPlayer)
   $('#6').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onSixFailure = () => {
@@ -96,6 +106,7 @@ const onSevenSuccess = game => {
   $('#7').text(currentPlayer)
   $('#7').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onSevenFailure = () => {
@@ -106,6 +117,7 @@ const onEightSuccess = game => {
   $('#8').text(currentPlayer)
   $('#8').off('click')
   changePlayer()
+  store.game = game.game
 }
 
 const onEightFailure = () => {

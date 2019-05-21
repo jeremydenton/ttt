@@ -15,18 +15,18 @@ const store = require('../store')
 //   })
 // }
 
-const currentPlayer = 'x'
+let currentPlayer = 'x'
 
-// const changePlayer = () => {
-//   if (currentPlayer === 'x') {
-//     currentPlayer = 'o'
-//     console.log('if' + currentPlayer)
-//   } else {
-//     currentPlayer = 'x'
-//     console.log('else' + currentPlayer)
-//   }
-//   console.log(currentPlayer)
-// }
+const changePlayer = () => {
+  if (currentPlayer === 'x') {
+    currentPlayer = 'o'
+    console.log('if' + currentPlayer)
+  } else {
+    currentPlayer = 'x'
+    console.log('else' + currentPlayer)
+  }
+  console.log(currentPlayer)
+}
 
 const newGame = () => {
   console.log('from api newGame')
@@ -40,6 +40,7 @@ const newGame = () => {
 }
 
 const updateGame = (square) => {
+  console.log('In updateGame: ', store.game)
   const id = store.game.id
   console.log(id)
   return $.ajax({
@@ -61,6 +62,6 @@ const updateGame = (square) => {
 }
 module.exports = {
   newGame,
-  updateGame
-  // changePlayer
+  updateGame,
+  changePlayer
 }

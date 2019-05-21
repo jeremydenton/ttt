@@ -24,13 +24,10 @@ body {
 
 }
 
-
-
-
 .row {
   background-color: $background-color;
   float: left;
-  height: 250px;
+  height: 200px;
   width: 800px;
 }
 
@@ -39,10 +36,13 @@ body {
   border: 10px;
   border-color: $background-color;
   border-style: solid;
-  height: 250px;
-  width: 250px;
+  font-size: 125px;
+  height: 200px;
+  width: 200px;
 }
 
 #turn {
   color: $board-color;
+  font-size: 80px;
+  text-align: center;
 }
